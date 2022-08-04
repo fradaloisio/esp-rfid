@@ -41,7 +41,7 @@ var config = {
         "openlockpin": null
     },
     "general": {
-        "hostnm": "my-esp-rfid",
+        "hostnm": "esp-rfid",
         "restart": 0,
         "pswd": "admin"
     },
@@ -54,7 +54,7 @@ var config = {
         "pswd": ""
     },
     "http":{
-        "enabled": 1,
+        "enabled": 0,
         "url": "http://mydomain"
     },
     "ntp": {
