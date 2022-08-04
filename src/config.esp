@@ -215,14 +215,10 @@ httpenabled = http["enabled"];
 	if (httpenabled == 1)
 	{
 #ifdef DEBUG
-		Serial.println("[ INFO ] Trying to setup HTTP");
+		Serial.println("[ INFO ] Trying to setup HTTP Request URL");
 #endif
 		String hurlString = http["url"];
 		hurl = strdup(hurlString.c_str());
-#ifdef DEBUG
-		Serial.println("[ INFO ] try to call HTTP URL ");
-#endif
-		httpGET();
 	}
 #ifdef DEBUG
 	Serial.println(F("[ INFO ] Configuration done."));
