@@ -29,6 +29,7 @@ bool ICACHE_FLASH_ATTR loadConfiguration()
 	JsonObject &hardware = json["hardware"];
 	JsonObject &general = json["general"];
 	JsonObject &mqtt = json["mqtt"];
+	JsonObject &http = json["http"];
 	JsonObject &ntp = json["ntp"];
 #ifdef DEBUG
 	Serial.println(F("[ INFO ] Trying to setup RFID Hardware"));
@@ -208,5 +209,25 @@ bool ICACHE_FLASH_ATTR loadConfiguration()
 #ifdef DEBUG
 	Serial.println(F("[ INFO ] Configuration done."));
 #endif
+
+////
+httpenabled = http["enabled"];
+	if (httpenabled == 1)
+	{
+#ifdef DEBUG
+		Serial.println("[ INFO ] Trying to setup HTTP");
+#endif
+		String hurlString = http["url"];
+		hurl = strdup(hurlString.c_str());
+#ifdef DEBUG
+		Serial.println("[ INFO ] try to call HTTP URL ");
+#endif
+		httpGET();
+	}
+#ifdef DEBUG
+	Serial.println(F("[ INFO ] Configuration done."));
+#endif
+////
+
 	return true;
 }

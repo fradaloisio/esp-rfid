@@ -26,20 +26,22 @@ var config = {
         "apsubnet": "255.255.255.0"
     },
     "hardware": {
-        "readerType": 1,
+        "readertype": 0,
         "wgd0pin": 4,
         "wgd1pin": 5,
-        "sspin": 0,
-        "rfidgain": 32,
-        "wifipin": 255,
+        "sspin": 16,
+        "rfidgain": 112,
+        "wifipin": 4,
         "rtype": 1,
         "ltype": 0,
-        "rpin": 4,
-        "rtime": 400,
-        "buttonpin": 255
+        "rpin": 5,
+        "rtime": 1000,
+        "buttonpin": 255,
+        "doorstatpin": 255,
+        "openlockpin": null
     },
     "general": {
-        "hostnm": "esp-rfid",
+        "hostnm": "my-esp-rfid",
         "restart": 0,
         "pswd": "admin"
     },
@@ -50,6 +52,10 @@ var config = {
         "topic": "",
         "user": "",
         "pswd": ""
+    },
+    "http":{
+        "enabled": 1,
+        "url": "http://mydomain"
     },
     "ntp": {
         "server": "pool.ntp.org",
@@ -229,6 +235,14 @@ function savemqtt() {
     config.mqtt.topic = document.getElementById("mqtttopic").value;
     config.mqtt.user = document.getElementById("mqttuser").value;
     config.mqtt.pswd = document.getElementById("mqttpwd").value;
+    uncommited();
+}
+function savehttp() {
+    config.http.enabled = 0;
+    if (parseInt($("input[name=\"httpenabled\"]:checked").val()) === 1) {
+        config.http.enabled = 1;
+    }
+    config.http.url = document.getElementById("httpurl").value;
     uncommited();
 }
 
@@ -447,6 +461,13 @@ function listmqtt() {
     document.getElementById("mqttpwd").value = config.mqtt.pswd;
 }
 
+function listhttp() {
+    if (config.http.enabled === 1) {
+        $("input[name=\"httpenabled\"][value=\"1\"]").prop("checked", true);
+        //$("input[name=httpenabled][value=\"1\"]").attr("checked", "checked");
+    }
+    document.getElementById("httpurl").value = config.http.url;
+}
 
 
 function listBSSID() {
@@ -583,6 +604,9 @@ function getContent(contentname) {
                     break;
                 case "#mqttcontent":
                     listmqtt();
+                    break;
+                case "#httpcontent":
+                    listhttp();
                     break;
                 case "#generalcontent":
                     listgeneral();
@@ -1204,6 +1228,7 @@ $("#network").on("click", (function() { getContent("#networkcontent"); return fa
 $("#hardware").click(function() { getContent("#hardwarecontent"); return false; });
 $("#general").click(function() { getContent("#generalcontent"); return false; });
 $("#mqtt").click(function() { getContent("#mqttcontent"); return false; });
+$("#http").click(function() { getContent("#httpcontent"); return false; });
 $("#ntp").click(function() { getContent("#ntpcontent"); return false; });
 $("#users").click(function() { getContent("#userscontent"); });
 $("#latestlog").click(function() { getContent("#logcontent"); return false; });

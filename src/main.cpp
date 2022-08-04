@@ -37,6 +37,7 @@ SOFTWARE.
 #include "Ntp.h"
 #include <AsyncMqttClient.h>
 #include <Bounce2.h>
+#include <ESP8266HTTPClient.h>
 
  //#define DEBUG
 
@@ -86,6 +87,7 @@ extern "C" {
 NtpClient NTP;
 AsyncMqttClient mqttClient;
 Ticker mqttReconnectTimer;
+HTTPClient httpClient;
 WiFiEventHandler wifiDisconnectHandler, wifiConnectHandler;
 Bounce button;
 
@@ -132,6 +134,8 @@ char *mhs = NULL;
 char *muser = NULL;
 char *mpas = NULL;
 int mport;
+int httpenabled = 0;
+char *hurl = NULL;
 
 int lockType;
 int relayType;
@@ -143,6 +147,7 @@ unsigned long interval = 1800;
 
 #include "log.esp"
 #include "mqtt.esp"
+#include "http.esp"
 #include "helpers.esp"
 #include "wsResponses.esp"
 #include "rfid.esp"

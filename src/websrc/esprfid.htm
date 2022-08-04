@@ -390,6 +390,38 @@
     <br>
     <br>
 </div>
+
+<div id="httpcontent">
+    <br>
+    <br>
+    <legend>HTTP Settings</legend>
+	    <br>
+    <div class="row form-group">
+        <label class="col-xs-3">http<i style="margin-left: 10px;" class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Please choose if you want to enable HTTP"></i></label>
+        <div class="col-xs-9">
+            <form>
+                <label class="radio-inline">
+                    <input type="radio" value="1" name="httpenabled">Enabled</label>
+                <label class="radio-inline">
+                    <input type="radio" value="0" name="httpenabled" checked>Disabled</label>
+            </form>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-xs-3">Topic<i style="margin-left: 10px;" class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="HTTP url"></i></label>
+        <span class="col-xs-9">
+    <input class="form-control input-sm" placeholder="HTTP url" value="" style="display:inline;max-width:185px" id="httpurl" type="text">
+  </span>
+        <br>
+        <br>
+        <div class="col-xs-9 col-md-8">
+            <button onclick="savehttp()" class="btn btn-primary btn-sm pull-right">Save</button>
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+
 <div id="networkcontent">
     <br>
     <br>
